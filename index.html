@@ -99,12 +99,12 @@
           }
           clearQR();
 
-          // Create QR code using QRious
+          // Create QR code using QRious and bind to the canvas inside qrContainer
           const qr = new QRious({
-            element: qrContainer,
+            element: qrContainer,   // Bind QRious to the qrContainer div
             value: text,
             size: size,
-            level: 'H' // high error correction level
+            level: 'H' // High error correction level
           });
 
           const canvas = qrContainer.querySelector('canvas');
