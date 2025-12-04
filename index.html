@@ -78,7 +78,7 @@
         message.style.color = '';
       }
 
-      // clear previous QR DOM and revoke any blob url used for download
+      // Clear previous QR DOM and revoke any blob url used for download
       function clearQR() {
         if (lastBlobUrl) {
           URL.revokeObjectURL(lastBlobUrl);
@@ -90,7 +90,7 @@
         previewText.textContent = '';
       }
 
-      // Create QR with client-side library (canvas) — returns true on success
+      // Create QR code with client-side library (canvas) — returns true on success
       function createQRWithLibrary(text, size) {
         try {
           if (!window.QRious) {
@@ -144,7 +144,7 @@
       clearBtn.addEventListener('click', clearQR);
       sizeRange.addEventListener('input', () => { sizeValue.textContent = sizeRange.value; });
 
-      // prevent download link that is not ready
+      // Prevent download link that is not ready
       downloadLink.addEventListener('click', (e) => {
         if (downloadLink.classList.contains('disabled') || downloadLink.href === '#') {
           e.preventDefault();
