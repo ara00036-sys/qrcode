@@ -99,29 +99,25 @@
           }
           clearQR();
 
-          // Create QR code using QRious and bind to the canvas inside qrContainer
+          // Create a new canvas element for QRious to draw the QR code
+          const canvas = document.createElement('canvas');
+          qrContainer.appendChild(canvas);
+
+          // Use QRious to generate the QR code inside the canvas
           const qr = new QRious({
-            element: qrContainer,   // Bind QRious to the qrContainer div
+            element: canvas,
             value: text,
             size: size,
-            level: 'H' // High error correction level
+            level: 'H' // high error correction level
           });
 
-          const canvas = qrContainer.querySelector('canvas');
-          if (canvas) {
-            // Ensure proper size for the canvas
-            canvas.width = size;
-            canvas.height = size;
-            const dataUrl = canvas.toDataURL('image/png');
-            downloadLink.href = dataUrl;
-            downloadLink.download = 'qrcode.png';
-            downloadLink.classList.add('active');
-            previewText.textContent = text;
-            return true;
-          } else {
-            setError('Canvas element not found for QR code');
-            return false;
-          }
+          // Set download link for QR code image
+          const dataUrl = canvas.toDataURL('image/png');
+          downloadLink.href = dataUrl;
+          downloadLink.download = 'qrcode.png';
+          downloadLink.classList.add('active');
+          previewText.textContent = text;
+          return true;
         } catch (err) {
           console.error(err);
           setError('QR creation failed: ' + err.message);
