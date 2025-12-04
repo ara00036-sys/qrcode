@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QR Code Generator</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script> <!-- QRious Library -->
+  <!-- QRious Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background: #f6f9ff; }
     .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 18px; border-radius: 10px; box-shadow: 0 6px 20px rgba(20, 30, 60, 0.06); }
@@ -48,7 +49,7 @@
   </main>
 
   <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', async () => {
       const textInput = document.getElementById('textInput');
       const generateBtn = document.getElementById('generateBtn');
       const downloadLink = document.getElementById('downloadLink');
@@ -57,24 +58,24 @@
       const sizeValue = document.getElementById('sizeValue');
       const previewText = document.getElementById('previewText');
       const sampleBtn = document.getElementById('sampleBtn');
-      const messageEl = document.getElementById('message');
+      const message = document.getElementById('message');
       const clearBtn = document.getElementById('clearBtn');
 
       let lastBlobUrl = null;
 
       function log(msg) {
         console.log('[QR DEBUG] ' + msg);
-        messageEl.textContent = 'Status: ' + msg;
+        message.textContent = 'Status: ' + msg;
       }
 
       function setError(msg) {
         console.error('[QR DEBUG] ' + msg);
-        messageEl.textContent = 'Error: ' + msg;
-        messageEl.style.color = '#b00020';
+        message.textContent = 'Error: ' + msg;
+        message.style.color = '#b00020';
       }
 
       function resetMessage() {
-        messageEl.style.color = '';
+        message.style.color = '';
       }
 
       // clear previous QR DOM and revoke any blob url used for download
@@ -158,8 +159,7 @@
       // Quick init for convenience
       textInput.value = 'https://example.com';
       generate();
-
-    })();
+    });
   </script>
 </body>
 </html>
